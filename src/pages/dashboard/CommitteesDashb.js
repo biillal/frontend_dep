@@ -184,19 +184,6 @@ export function CommitteesDashb() {
                         </tbody>
                     </table>
                 </CardBody>
-                <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-                    <Typography variant="small" color="blue-gray" className="font-normal">
-                        Page 1 of 10
-                    </Typography>
-                    <div className="flex gap-2">
-                        <Button variant="outlined" size="sm">
-                            Previous
-                        </Button>
-                        <Button variant="outlined" size="sm">
-                            Next
-                        </Button>
-                    </div>
-                </CardFooter>
             </Card>
 
             {
@@ -205,6 +192,10 @@ export function CommitteesDashb() {
                         <div className="z-50 shadow-xl bg-gray-100 rounded-lg fixed w-[50%]  -mt-[40%] ml-52  h-[300px] ">
                             <div className="p-3 text-end">
                                 <i class="ri-close-line text-xl font-bold" onClick={()=>setOpen(false)}></i>
+                            </div>
+                            <div className="">
+                                <input value={committees.name} />
+                                <h1 className="">{committees.name} adddd </h1>
                             </div>
                         </div>
                     ) :

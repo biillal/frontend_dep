@@ -9,6 +9,9 @@ import CreateAdmin from './CreateAdmin'
 import { CommitteesDashb } from './CommitteesDashb'
 import { CreateCommittees } from './CreateCommittees'
 import { helix } from 'ldrs'
+import { useDispatch } from 'react-redux'
+import { logoutUser } from '../../redux/apiCalls/userAdminApiCalls'
+import Admins from './Admins'
 
 
 
@@ -22,6 +25,10 @@ function Container() {
             setLoading(true)
         }, 2000)
     }, [])
+    const dispatch = useDispatch()
+    const handlelogout = ()=>{
+        dispatch(logoutUser())
+    }
     return (
         <div>
             {
@@ -38,7 +45,8 @@ function Container() {
                                     <Text className='text-xl font-bold text-white cursor-pointer' onClick={() => setContainer('create-committees')}>Create committees</Text>
                                     <Text className='text-xl font-bold text-white cursor-pointer' onClick={() => setContainer('users')}>Users </Text>
                                     <Text className='text-xl font-bold text-white cursor-pointer' onClick={() => setContainer('create-admin')}>create admin</Text>
-                                    <Text className='text-xl font-bold text-white cursor-pointer'>Logout</Text>
+                                    <Text className='text-xl font-bold text-white cursor-pointer' onClick={() => setContainer('getall-admin')}>All admins</Text>
+                                    <Text className='text-xl font-bold text-white cursor-pointer' onClick={handlelogout}>Logout</Text>
                                 </div>
                             </div>
 
@@ -57,6 +65,9 @@ function Container() {
                                 }
                                 {
                                     container === 'create-admin' ? <CreateAdmin /> : null
+                                }
+                                {
+                                    container === 'getall-admin' ? <Admins /> : null
                                 }
                             </div>
                         </div>

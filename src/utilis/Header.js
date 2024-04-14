@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, useDisclosure } from '@chakra-ui/react'
+import { useSelector } from 'react-redux'
 function Header() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
-
+    const { user } = useSelector((state) => state.admin)
     return (
         <div className='fixed w-[100%] z-50 '>
             <div className=' lg:flex justify-between bg-blue-900 items-center lg:pl-[130px] lg:pr-[130px] hidden '>
@@ -16,6 +17,11 @@ function Header() {
                     <Link to='/topics' className='text-white text-lg font-semibold hover:text-blue-500 '>Topics</Link>
                     <Link to='/registrations' className='text-white text-lg font-semibold hover:text-blue-500 '>Registrations</Link>
                     <Link to='/contact' className='text-white text-lg font-semibold hover:text-blue-500 '>Contact</Link>
+                    {
+                        user ? (
+                            <Link to='/dashboard' className='text-white text-lg font-semibold hover:text-blue-500 '>Dashboard</Link>
+                        ) : null
+                    }
                 </div>
             </div>
 
@@ -29,7 +35,7 @@ function Header() {
                 placement='right'
                 onClose={onClose}
                 finalFocusRef={btnRef}
-                
+
             >
                 <DrawerOverlay />
                 <DrawerContent>

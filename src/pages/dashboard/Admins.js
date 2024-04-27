@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllAdmin } from '../../redux/apiCalls/userAdminApiCalls'
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { deleteAdmin, getAllAdmin } from '../../redux/apiCalls/userAdminApiCalls'
 import {
     Card,
     CardHeader,
@@ -33,7 +32,7 @@ const TABS = [
     },
 ];
 
-const TABLE_HEAD = ["Nom", "Prénom", "Institution", "InstitutionAddress", "Ville", "Phone","Email","Datte", "Delete"];
+const TABLE_HEAD = ["Nom", "Prénom", "Email", "Date","Delete"];
 const Admins = () => {
     const dispatch = useDispatch()
     const { users } = useSelector((state) => state.admin)
@@ -42,7 +41,7 @@ const Admins = () => {
     }, [])
     console.log(users);
     const deleteHandler = (id) => {
-
+        dispatch(deleteAdmin({id}))
         window.location.reload();
     }
     return (
@@ -56,14 +55,7 @@ const Admins = () => {
                             </Typography>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-                        <div className="w-full md:w-72">
-                            <Input
-                                label="Search"
-                                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-                            />
-                        </div>
-                    </div>
+
                 </CardHeader>
                 <CardBody className="overflow-scroll px-0">
                     <table className="mt-4 w-full min-w-max table-auto text-left">

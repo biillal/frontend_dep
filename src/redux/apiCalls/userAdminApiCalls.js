@@ -30,7 +30,7 @@ export function getAllAdmin(){
 export function logoutUser(){
     return async (dispatch,getState) =>{
         dispatch(userAdminActions.logout())
-        localStorage.removeItem("userInfo")
+        localStorage.removeItem("userAdmin")
     } 
 }
 
@@ -46,8 +46,21 @@ export function createAdmin(user){
             console.log(data);
              dispatch(userAdminActions.createAdmin(data.message))
         } catch (error) {
-            console.log(error);
+            alert(error.response.data.errors[0].msg);
         }
     } 
 }
 
+
+export function deleteAdmin({id}) {
+    return async (dispatch, getState) => {
+        try {
+            console.log(id);
+            const { data } = await axios.delete(`http://localhost:8000/api/v1/userAdmin/admin/${id}`)
+            dispatch(userAdminActions.deleteAdmin(data))
+            console.log(data.message);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}

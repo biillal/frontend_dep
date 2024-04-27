@@ -8,6 +8,7 @@ const userAdminSlice = createSlice({
         isLoading:false,
         messageDeleted:"",
         users:[],
+        delete:'',
         message:"",
         status:false,
         error:""
@@ -24,6 +25,9 @@ const userAdminSlice = createSlice({
         },
         getAllAdmin(state,action){
             state.users = action.payload
+        },
+        deleteAdmin(state,action){
+            state.delete = action.payload.message
         }
 
     }

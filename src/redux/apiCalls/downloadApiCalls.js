@@ -1,43 +1,44 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { committeesActions } from '../redux/committees'
+import { downloadActions } from '../redux/download'
 
-export function getAllCommittees() {
+export function getAllDownload() {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.get('http://localhost:8000/api/v1/committees/getAllCommittees' )
-            dispatch(committeesActions.getAllCommittees(data.result))
+            const { data } = await axios.get('http://localhost:8000/api/v1/download' )
+            dispatch(downloadActions.getAllDownload(data.result))
             console.log(data.result);
         } catch (error) {
             console.log(error);
         }
     }
 }
-export function createCommittess(t) {
+export function createDownload(post) {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.post('http://localhost:8000/api/v1/committees/createCommittees',t )
-            dispatch(committeesActions.createCommittees(data.message))
-            toast({
-                title: "create successfully",
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-            })
+            const { data } = await axios.post('http://localhost:8000/api/v1/download/create', post, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+            )
+            console.log(data.registration);
+            dispatch(downloadActions.createDownload(data.message))
+            alert('Created successfully')
         } catch (error) {
             console.log(error);
         }
     }
 }
-export function deleteCommittees(id) {
+export function deleteDownload(id) {
     return async (dispatch, getState) => {
         try {
-            console.log(id);
-            const { data } = await axios.delete(`http://localhost:8000/api/v1/committees/deleteCommittees/${id}`)
-            dispatch(committeesActions.deleteCommittees(data.message))
-            console.log(data.message);
+            const { data } = await axios.delete(`http://localhost:8000/api/v1/download/${id}`)
+            dispatch(downloadActions.deletedDownload(data.message))
+            console.log(data);
         } catch (error) {
             console.log(error);
         }

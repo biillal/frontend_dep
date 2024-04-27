@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { committeesActions } from '../redux/committees'
 import { registrationsActions } from '../redux/registrations'
+import { activeRegisterActions } from '../redux/activeRegister'
 
 export function createRegistrations(post) {
     return async (dispatch, getState) => {
@@ -22,13 +23,40 @@ export function createRegistrations(post) {
 }
 
 
-export function fetchAllRegistration() {
+export function getActive() {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.get('http://localhost:8000/api/v1/registrations/fetchAllRegistration')
-            dispatch(registrationsActions.fetchAllRegistrations(data.result))
-            console.log(data.result);
+            const { data } = await axios.get('http://localhost:8000/api/v1/active')
+            dispatch(activeRegisterActions.getActives(data))
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export function activeReg() {
+    return async (dispatch, getState) => {
+        try {
+
+            const { data } = await axios.put('http://localhost:8000/api/v1/active/active')
+            dispatch(activeRegisterActions.active(data))
+            console.log(data.message);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export function desactiveReg() {
+    return async (dispatch, getState) => {
+        try {
+
+            const { data } = await axios.put('http://localhost:8000/api/v1/active/desactive')
+            dispatch(activeRegisterActions.desactive(data))
+            console.log(data);
+            alert(data.message)
         } catch (error) {
             console.log(error);
         }
@@ -37,17 +65,6 @@ export function fetchAllRegistration() {
 
 
 
-export function deleteUser(id) {
-    return async (dispatch, getState) => {
-        try {
 
-            const { data } = await axios.delete(`http://localhost:8000/api/v1/registrations/delet-user/${id}`)
-            dispatch(registrationsActions.deleteUser(data.result))
-            console.log(data.result);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
 
 

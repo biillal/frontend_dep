@@ -1,6 +1,6 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 import {
     Card,
     CardHeader,
@@ -19,7 +19,8 @@ import {
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCommittees, getAllCommittees } from "../../redux/apiCalls/committeesApiCalls";
+import { createCommittess, deleteCommittees, getAllCommittees, updateCommittees } from "../../redux/apiCalls/committeesApiCalls";
+import { Select } from "@chakra-ui/react";
 
 const TABS = [
     {
@@ -40,13 +41,28 @@ const TABLE_HEAD = ["Name", "Role", "University", "Category", "Date", "Edit", "D
 
 
 export function CommitteesDashb() {
+    const [id, setId] = useState("")
+    const [name, setName] = useState("")
+    const [role, setRole] = useState("")
+    const [univ, setUniv] = useState("")
+    const [gender, setGender] = useState("")
+    const [categoryCmt, setCategoryCmt] = useState("")
+    const { message } = useSelector((state) => state.committees);
     const [open, setOpen] = useState(false)
     const { committees } = useSelector((state) => state.committees)
+    console.log(id);
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleDelete = (id) =>{
+    const submitHandler = (e) => {
+
+        const committee = { name, role, univ, gender, categoryCmt }
+        dispatch(updateCommittees(id, committee));
+        window.location.reload();
+
+    }
+    const handleDelete = (id) => {
         dispatch(deleteCommittees(id))
-        window.location.reload(); 
+        window.location.reload();
     }
     useEffect(() => {
         dispatch(getAllCommittees())
@@ -60,14 +76,6 @@ export function CommitteesDashb() {
                             <Typography variant="h5" color="blue-gray">
                                 Committees list
                             </Typography>
-                        </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-                        <div className="w-full md:w-72">
-                            <Input
-                                label="Search"
-                                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-                            />
                         </div>
                     </div>
                 </CardHeader>
@@ -164,15 +172,17 @@ export function CommitteesDashb() {
                                                 </Typography>
                                             </td>
                                             <td className={classes}>
-                                                <Tooltip content="Edit Committees">
-                                                    <IconButton variant="text" onClick={()=>setOpen(true)}>
-                                                        <PencilIcon className="h-4 w-4" />
-                                                    </IconButton>
-                                                </Tooltip>
+                                                <Link to={`/updateCommittees/${comt._id}`}>
+                                                    <Tooltip content="Edit Committees" >
+                                                        <IconButton variant="text" onClick={() => { setOpen(true) }}>
+                                                            <PencilIcon className="h-4 w-4" onClick={() => setId(comt._id)} />
+                                                        </IconButton>
+                                                    </Tooltip>
+                                                </Link>
                                             </td>
                                             <td className={classes}>
                                                 <Tooltip content="Delete Committees">
-                                                    <IconButton variant="text" onClick={()=>handleDelete(comt._id)}>
+                                                    <IconButton variant="text" onClick={() => handleDelete(comt._id)}>
                                                         <i class="ri-delete-bin-6-fill text-xl text-red-700" ></i>
                                                     </IconButton>
                                                 </Tooltip>
@@ -189,13 +199,66 @@ export function CommitteesDashb() {
             {
                 open ?
                     (
-                        <div className="z-50 shadow-xl bg-gray-100 rounded-lg fixed w-[50%]  -mt-[40%] ml-52  h-[300px] ">
+                        <div className="z-50 shadow-xl overflow-auto  bg-gray-100 rounded-lg fixed w-[50%]  -mt-[48%] ml-52  h-[600px] ">
                             <div className="p-3 text-end">
-                                <i class="ri-close-line text-xl font-bold" onClick={()=>setOpen(false)}></i>
+                                <i class="ri-close-line text-xl font-bold" onClick={() => setOpen(false)}></i>
                             </div>
                             <div className="">
-                                <input value={committees.name} />
-                                <h1 className="">{committees.name} adddd </h1>
+                                <div className=" flex justify-center">
+                                    <Card color="transparent" shadow={false}>
+                                        <Typography variant="h4" color="blue-gray">
+                                            Create New Committees
+                                        </Typography>
+                                        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" >
+                                            <div className="mb-1 flex flex-col gap-6">
+                                                <Typography variant="h6" color="blue-gray" className="-mb-3">
+                                                    Your Name
+                                                </Typography>
+                                                <Input
+                                                    size="lg"
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    placeholder="name@mail.com"
+                                                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                                                    labelProps={{
+                                                        className: "before:content-none after:content-none",
+                                                    }}
+                                                />
+                                                <Select placeholder='Select Role' onChange={(e) => setRole(e.target.value)}>
+                                                    <option >Rector</option>
+                                                    <option >Dean</option>
+                                                    <option >Co-Chair</option>
+                                                    <option >President</option>
+                                                </Select>
+                                                <Typography variant="h6" color="blue-gray" className="-mb-3">
+                                                    University
+                                                </Typography>
+                                                <Input
+                                                    size="lg"
+                                                    onChange={(e) => setUniv(e.target.value)}
+                                                    placeholder="University"
+                                                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                                                    labelProps={{
+                                                        className: "before:content-none after:content-none",
+                                                    }}
+                                                />
+                                                <Select placeholder='Select Gender' onChange={(e) => setGender(e.target.value)}>
+                                                    <option >Pr</option>
+                                                    <option >Dr</option>
+                                                </Select>
+                                                <Select placeholder='Select Gender' onChange={(e) => setCategoryCmt(e.target.value)}>
+                                                    <option  >Honorary Commitee</option>
+                                                    <option >General Chair</option>
+                                                    <option >Organizing Commitee</option>
+                                                    <option >Scientific Commitee</option>
+                                                </Select>
+                                            </div>
+
+                                            <Button className="mt-6" type="submit" fullWidth onClick={submitHandler}>
+                                                Create
+                                            </Button>
+                                        </form>
+                                    </Card>
+                                </div>
                             </div>
                         </div>
                     ) :

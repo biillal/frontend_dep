@@ -1,5 +1,6 @@
 import React from 'react'
 import rectoratImg from '../../../assets/logo-3.png'
+import departementImg from '../../../assets/db.jpg'
 import logo1 from '../../../assets/logo-1.png'
 import logo2 from '../../../assets/logo-2.png'
 import { Text } from '@chakra-ui/react'
@@ -8,12 +9,16 @@ import {motion} from 'framer-motion'
 function HeaderHome() {
   return (
     <div className="relative  z-30">
-      <img src={rectoratImg} className='w-[100%]  lg:h-[550px] h-[570px] ' />
+      <motion.img 
+        initial={{opacity:0 }}
+        animate={{opacity:1}}
+        transition={{duration:0.9}}
+       src={departementImg} className='w-[100%] opacity-90 lg:h-[550px] h-[570px] ' />
       <div className=' absolute top-0 lg:flex  lg:flex-row w-[90%] lg:items-center lg:h-[550px]  justify-around lg:w-[100%] '>
         <motion.div
-          className='flex ml-6 mt-3 -lg:mt-5 lg:ml-0'
+          className='flex ml-6 mt-4 -lg:mt-3 lg:ml-0'
           initial={{translateY:-50}}
-          animate={{translateY:50}}
+          animate={{translateY:10}}
           whileInView={{yoyo:Infinity}}
           transition={{duration:0.4 ,}}
         
@@ -25,11 +30,10 @@ function HeaderHome() {
           initial={{opacity:0 , scale:0.3}}
           whileInView={{opacity:1 , scale:1}}
           transition={{duration:0.9}}
-          className='lg:w-[50%] ml-7 lg:mt-0 mt-14'>
-          <Text className='text-3xl font-bold  '>The first International Conference on Chemistry Science,
-            Materials Design and their applications ICCSM’2024
-
-            November 18-20, 2024 -Chlef-</Text>
+          className='lg:w-[50%] ml-7 lg:mt-0 mt-2 flex flex-col gap-2'>
+          <Text className='text-5xl font-bold text-black font-[Poppins] '>The first International Conference on Chemistry Science,
+            Materials Design and their applications ICCSM’2024</Text>
+          <Text className='text-2xl font-semibold text-white'>November 18-20, 2024 -Chlef-</Text>
         </motion.div>
       </div>
       <motion.div

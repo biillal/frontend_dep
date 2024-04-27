@@ -9,6 +9,8 @@ import Register from './pages/registration/Register';
 import Dashboard from './pages/dashboard/Dashboard';
 import Login from './pages/login/Login';
 import { useSelector } from 'react-redux';
+import UpdateCommittees from './pages/dashboard/UpdateCommittees';
+import { Submission } from './pages/Submission/Submission';
 
 function App() {
   const {user} = useSelector((state)=>state.admin)
@@ -22,8 +24,10 @@ function App() {
         <Route path='/topics' element={<Topics />} />
         <Route path='/registrations' element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/submission' element={<Submission />} />
 
         <Route path='/dashboard' element={user ? <Dashboard/> : <Home/>}/>
+        <Route path='/updateCommittees/:id' element={user ? <UpdateCommittees/> : <Home/>}/>
       </Routes>
     </BrowserRouter>
   );

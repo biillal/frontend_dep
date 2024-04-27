@@ -9,7 +9,7 @@ function ConfirenceHome() {
             <Box position='relative' padding='10' className=''>
                 <Divider color="blue" />
                 <AbsoluteCenter bg='white' px='4'>
-                    <Text className='text-center text-3xl font-bold '>Conference objectives</Text>
+                    <Text className='text-center text-3xl font-bold font-[Poppins] '>Conference objectives</Text>
                 </AbsoluteCenter>
             </Box>
             <div className='lg:flex gap-32 p-7 bg-white'>
@@ -20,10 +20,10 @@ function ConfirenceHome() {
                     transition={{duration:1}}
                     className='lg:w-[25%] lg:ml-24'
                 >
-                    <img src={logo1} className='  w-[100%]  h-[300px] ' alt='logo1' />
+                    <img src={logo1} className=' w-[100%]  lg:h-[300px] ' alt='logo1' />
                 </motion.div>
                 <div className='border lg:w-[50%] w-[100%] border-blue-900 p-4 rounded-lg'>
-                    <Text className='text-lg font-semibold text-blue-700'>
+                    <Text className='text-xl font-bold font-[Poppins] text-black text-center '>
                         Chemistry stands as an experimental science
                         dedicated to serving humanity, positioned at the
                         crossroads of numerous disciplines including

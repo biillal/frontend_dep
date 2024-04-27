@@ -16,7 +16,7 @@ function Committees() {
     return (
         <MainLayout>
             <div className='lg:pl-60 lg:pr-60 pl-7 flex flex-col gap-6 pt-24'>
-                <div className=''>
+                <div className='font-[Poppins]'>
                     <motion.span
                         className='text-3xl font-bold text-blue-900'
                         initial={{ opacity: 0 }}
@@ -46,7 +46,7 @@ function Committees() {
 
                 </div>
 
-                <div className=''>
+                <div className='font-[Poppins]'>
                     <motion.span
                         className='text-3xl font-bold text-blue-900'
                         initial={{ opacity: 0 }}
@@ -73,7 +73,7 @@ function Committees() {
                     }
                 </div>
 
-                <div className=''>
+                <div className='font-[Poppins]'>
                     <motion.span
                         className='text-3xl font-bold text-blue-900'
                         initial={{ opacity: 0 }}
@@ -101,7 +101,7 @@ function Committees() {
                 </div>
 
 
-                <div className=''>
+                <div className='font-[Poppins]'>
                     <motion.span
                         className='text-3xl font-bold text-blue-900'
                         initial={{ opacity: 0 }}

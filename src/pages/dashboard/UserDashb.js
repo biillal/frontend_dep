@@ -3,53 +3,68 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from 'react-router-dom'
 import {
-    Card,
-    CardHeader,
-    Input,
-    Typography,
-    Button,
-    CardBody,
-    Chip,
-    CardFooter,
-    Tabs,
-    TabsHeader,
-    Tab,
-    Avatar,
-    IconButton,
-    Tooltip,
+  Card,
+  CardHeader,
+  Input,
+  Typography,
+  Button,
+  CardBody,
+  Chip,
+  CardFooter,
+  Tabs,
+  TabsHeader,
+  Tab,
+  Avatar,
+  IconButton,
+  Tooltip,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCommittees, getAllCommittees } from "../../redux/apiCalls/committeesApiCalls";
 import { deleteUser, fetchAllRegistration } from '../../redux/apiCalls/registrationApiCalls';
+import { activeReg, desactiveReg, getActive } from '../../redux/apiCalls/activeRegisterApiCalls';
 
 const TABS = [
-    {
-        label: "All",
-        value: "all",
-    },
-    {
-        label: "Monitored",
-        value: "monitored",
-    },
-    {
-        label: "Unmonitored",
-        value: "unmonitored",
-    },
+  {
+    label: "All",
+    value: "all",
+  },
+  {
+    label: "Monitored",
+    value: "monitored",
+  },
+  {
+    label: "Unmonitored",
+    value: "unmonitored",
+  },
 ];
 
-const TABLE_HEAD = ["Nom", "Prénom", "Institution", "InstitutionAddress", "Ville", "Phone","Email","Datte", "Delete"];
+const TABLE_HEAD = ["Nom", "Prénom", "Institution", "InstitutionAddress", "Ville", "Phone", "Email", "Gender", "pdf", "Date", "Delete"];
 function UserDashb() {
-  const {registrations} = useSelector((state)=>state.registrations);
+  const { registrations } = useSelector((state) => state.registrations);
+  const { actives , message } = useSelector((state) => state.activeRegister);
   const dispatch = useDispatch();
-  const deleteHandler = (id) =>{
+  const deleteHandler = (id) => {
     dispatch(deleteUser(id));
-    window.location.reload(); 
+    window.location.reload();
   }
-  useEffect(()=>{
+  console.log(message);
+  const desactivRg = () =>{
+    dispatch(desactiveReg())
+    window.location.reload();
+  }
+  const activRg = () =>{
+    dispatch(activeReg())
+    window.location.reload();
+  }
+  useEffect(() => {
     dispatch(fetchAllRegistration())
-  },[])
-  console.log(registrations);
+    dispatch(getActive())
+  }, [])
+  const showPdf = (pdf) => {
+    window.open(`http://localhost:8000/files/${pdf}`, "_blank", "noreferrer")
+  }
+
   return (
     <div>
       <Card className="h-screen overflow-auto w-full">
@@ -60,15 +75,19 @@ function UserDashb() {
                 Committees list
               </Typography>
             </div>
-          </div>
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div className="w-full md:w-72">
-              <Input
-                label="Search"
-                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-              />
+            <div className='mr-5'>
+              {
+                actives.active ? (
+                  <button className='bg-red-800 p-2 text-white rounded-lg' onClick={desactivRg} >Désactive</button>
+                ) : 
+                (
+                  <button className='bg-blue-800 p-2 text-white rounded-lg' onClick={activRg}>active</button>
+                )
+              }
+
             </div>
           </div>
+
         </CardHeader>
         <CardBody className="overflow-scroll px-0">
           <table className="mt-4 w-full min-w-max table-auto text-left">
@@ -97,7 +116,7 @@ function UserDashb() {
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-blue-gray-50";
-
+                  console.log(register.file);
                   return (
                     <tr key={register.nom}>
                       <td className={classes}>
@@ -180,6 +199,25 @@ function UserDashb() {
                         </div>
                       </td>
                       <td className={classes}>
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {register.gender}
+                          </Typography>
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div className="flex flex-col">
+                          <button onClick={() => showPdf(register.file)} className='text-center'>
+                            <i class="ri-arrow-down-circle-line text-3xl"></i>
+                          </button>
+
+                        </div>
+                      </td>
+                      <td className={classes}>
                         <Typography
                           variant="small"
                           color="blue-gray"
@@ -190,7 +228,7 @@ function UserDashb() {
                       </td>
                       <td className={classes}>
                         <Tooltip content="Delete Committees">
-                          <IconButton variant="text" onClick={()=>deleteHandler(register._id)}>
+                          <IconButton variant="text" onClick={() => deleteHandler(register._id)}>
                             <i class="ri-delete-bin-6-fill text-xl text-red-700" ></i>
                           </IconButton>
                         </Tooltip>
@@ -202,19 +240,6 @@ function UserDashb() {
             </tbody>
           </table>
         </CardBody>
-        <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-          <Typography variant="small" color="blue-gray" className="font-normal">
-            Page 1 of 10
-          </Typography>
-          <div className="flex gap-2">
-            <Button variant="outlined" size="sm">
-              Previous
-            </Button>
-            <Button variant="outlined" size="sm">
-              Next
-            </Button>
-          </div>
-        </CardFooter>
       </Card>
     </div>
   )

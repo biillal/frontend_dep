@@ -28,7 +28,7 @@ export function fetchAllRegistration() {
 
             const { data } = await axios.get('http://localhost:8000/api/v1/registrations/fetchAllRegistration')
             dispatch(registrationsActions.fetchAllRegistrations(data.result))
-            console.log(data.result);
+
         } catch (error) {
             console.log(error);
         }
@@ -43,7 +43,7 @@ export function deleteUser(id) {
 
             const { data } = await axios.delete(`http://localhost:8000/api/v1/registrations/delet-user/${id}`)
             dispatch(registrationsActions.deleteUser(data.result))
-            console.log(data.result);
+
         } catch (error) {
             console.log(error);
         }

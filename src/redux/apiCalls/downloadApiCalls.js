@@ -38,7 +38,7 @@ export function deleteDownload(id) {
         try {
             const { data } = await axios.delete(`http://localhost:8000/api/v1/download/${id}`)
             dispatch(downloadActions.deletedDownload(data.message))
-            console.log(data);
+
         } catch (error) {
             console.log(error);
         }
@@ -47,10 +47,10 @@ export function deleteDownload(id) {
 export function updateCommittees(id,upd) {
     return async (dispatch, getState) => {
         try {
-            console.log(id);
+
             const { data } = await axios.put(`http://localhost:8000/api/v1/committees/updateCommittees/${id}`,upd)
             dispatch(committeesActions.updateCommittees(data))
-            console.log(data);
+
         } catch (error) {
             console.log(error);
         }
@@ -59,10 +59,10 @@ export function updateCommittees(id,upd) {
 export function singleCommittee(id) {
     return async (dispatch, getState) => {
         try {
-            console.log(id);
+
             const { data } = await axios.get(`http://localhost:8000/api/v1/committees/committees/${id}`)
             dispatch(committeesActions.singleCommittes(data))
-            console.log(data);
+
         } catch (error) {
             console.log(error);
         }

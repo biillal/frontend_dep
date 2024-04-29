@@ -17,7 +17,7 @@ const CreateDownload = () => {
     if (!file) return alert("pdf file is requried")
     dispatch(createDownload({title,file}))
   }
-  console.log(message);
+
   return (
     <div className='flex justify-center items-star w-[100%] '>
 

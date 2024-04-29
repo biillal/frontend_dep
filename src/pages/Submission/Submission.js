@@ -6,6 +6,8 @@ import { createRegistrations } from "../../redux/apiCalls/registrationApiCalls";
 import { Select, Text } from "@chakra-ui/react";
 import { getActive } from "../../redux/apiCalls/activeRegisterApiCalls";
 import pdfImage from '../../assets/PDF.png'
+import { topicsmap } from "../../utilis/topics";
+import { useNavigate } from "react-router-dom";
 export function Submission() {
     const dispatch = useDispatch()
     const [nom, setNom] = useState('');
@@ -16,17 +18,18 @@ export function Submission() {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [gender, setGender] = useState('');
+    const [topic, setTopic] = useState('');
     const [file, setFile] = useState(null);
     const [disabled, setDisabled] = useState(true)
 
     const { actives } = useSelector((state) => state.activeRegister)
-
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         if (!file) return alert("pdf file is requried")
         const formData = new FormData();
         formData.append("file", file);
-        dispatch(createRegistrations({ nom, prenom, institution, institutionAddress, ville, phone, email, file, gender }))
-
+        dispatch(createRegistrations({ nom, prenom, institution, institutionAddress, ville, phone, email, file, gender , topic }))
+        navigate('/')
     }
     useEffect(() => {
         dispatch(getActive())
@@ -89,14 +92,23 @@ export function Submission() {
                                                 </div>
                                                 <div className='flex gap-5 w-[100%] lg:flex-row flex-col justify-center mt-6'>
                                                     <div className='flex flex-col gap-2 w-[100%] lg:w-[50%]'>
-                                                        <Text className='text-lg font-semibold text-blue-900'>Ville  <span className='text-red-600'>*</span> </Text>
-                                                        <input className='p-2 border border-blue-900 rounded-lg' onChange={(e) => setVille(e.target.value)} type='text' placeholder='Entrez votre Ville ' />
+                                                        <Text className='text-lg font-semibold text-blue-900'>Topic  <span className='text-red-600'>*</span> </Text>
+                                                        <Select placeholder='Select topic' onChange={(e) => setTopic(e.target.value)}>
+                                                            {
+                                                                topicsmap?.map((topic) => {
+                                                                    return (
+                                                                        <option key={topic.id}>{topic.name}</option>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </Select>
                                                     </div>
                                                     <div className='flex flex-col gap-2 w-[100%] lg:w-[50%]'>
                                                         <Text className='text-lg font-semibold text-blue-900'>Gender  <span className='text-red-600'>*</span> </Text>
                                                         <Select placeholder='Select Gender' onChange={(e) => setGender(e.target.value)}>
-                                                            <option >man</option>
-                                                            <option >Women</option>
+                                                            <option >Teacher-researchers</option>
+                                                            <option >Post-graduate students</option>
+                                                            <option >Industrial</option>
                                                         </Select>
                                                     </div>
                                                 </div>
@@ -109,6 +121,10 @@ export function Submission() {
                                                         <Text className='text-lg font-semibold text-blue-900'>Phone number <span className='text-red-600'>*</span> </Text>
                                                         <input className='p-2 border border-blue-900 rounded-lg' onChange={(e) => setPhone(e.target.value)} type='text' placeholder='Entrez votre Phone number' />
                                                     </div>
+                                                </div>
+                                                <div className='flex flex-col mt-4 gap-2 w-[100%] lg:w-[50%]'>
+                                                    <Text className='text-lg font-semibold text-blue-900'>Ville  <span className='text-red-600'>*</span> </Text>
+                                                    <input className='p-2 border border-blue-900 rounded-lg' onChange={(e) => setVille(e.target.value)} type='text' placeholder='Entrez votre Ville ' />
                                                 </div>
 
                                             </form>

@@ -39,7 +39,7 @@ const TABS = [
   },
 ];
 
-const TABLE_HEAD = ["Nom", "Prénom", "Institution", "InstitutionAddress", "Ville", "Phone", "Email", "Gender", "pdf", "Date", "Delete"];
+const TABLE_HEAD = ["Nom", "Prénom", "Institution", "InstitutionAddress", "Ville", "Phone", "Email", "Gender", "Topic" , "pdf", "Date", "Delete"];
 function UserDashb() {
   const { registrations } = useSelector((state) => state.registrations);
   const { actives , message } = useSelector((state) => state.activeRegister);
@@ -206,6 +206,17 @@ function UserDashb() {
                             className="font-normal"
                           >
                             {register.gender}
+                          </Typography>
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {register.topic}
                           </Typography>
                         </div>
                       </td>

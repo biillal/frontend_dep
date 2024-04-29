@@ -10,7 +10,7 @@ function CreateAdmin() {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const { message } = useSelector((state) => state.admin)
   const { error } = useSelector((state) => state.admin)
-  console.log(error);
+
   const dispatch = useDispatch()
   console.log(message);
   const hadnlerSubmit = (e) => {

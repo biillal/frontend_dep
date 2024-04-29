@@ -29,7 +29,7 @@ export function CreateCommittees() {
         window.location.reload(); 
         
     }
-    console.log(message);
+
     return (
         <div className=" flex justify-center">
             <Card color="transparent" shadow={false}>

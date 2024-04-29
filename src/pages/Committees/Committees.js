@@ -12,7 +12,7 @@ function Committees() {
         dispatch(getAllCommittees())
     }, [getAllCommittees])
 
-    console.log(committees);
+
     return (
         <MainLayout>
             <div className='lg:pl-60 lg:pr-60 pl-7 flex flex-col gap-6 pt-24'>

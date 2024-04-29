@@ -33,7 +33,7 @@ const UpdateCommittees = () => {
         navigate('/dashboard')
 
     }
-    console.log(update);
+
     return (
         <div className="h-screen bg-black">
             <Link to='/dashboard' className='text-start text-white p-5 text-2xl'>

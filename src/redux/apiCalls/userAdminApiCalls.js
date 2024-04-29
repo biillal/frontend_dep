@@ -19,7 +19,7 @@ export function getAllAdmin(){
         try {
              const {data} = await axios.get("http://localhost:8000/api/v1/userAdmin/fetchAllAdmin")
              dispatch(userAdminActions.getAllAdmin(data.admins))
-             console.log(data);
+
         } catch (error) {
             console.log(error.response.data.message);
         }
@@ -55,10 +55,8 @@ export function createAdmin(user){
 export function deleteAdmin({id}) {
     return async (dispatch, getState) => {
         try {
-            console.log(id);
             const { data } = await axios.delete(`http://localhost:8000/api/v1/userAdmin/admin/${id}`)
             dispatch(userAdminActions.deleteAdmin(data))
-            console.log(data.message);
         } catch (error) {
             console.log(error);
         }

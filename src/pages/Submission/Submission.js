@@ -150,7 +150,7 @@ export function Submission() {
                                     </div>
                             }
                         </div>
-                        <div className=" flex justify-between lg:w-[50%] w-[100%] mt-40 lg:mt-0 ">
+                        <div className=" flex justify-between lg:w-[50%] w-[100%] mt-80 lg:mt-0 ">
                             <Button onClick={handlePrev} disabled={isFirstStep}>
                                 Prev
                             </Button>

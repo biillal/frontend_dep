@@ -51,10 +51,12 @@ function UserDashb() {
   console.log(message);
   const desactivRg = () =>{
     dispatch(desactiveReg())
+    alert('registration is desactive');
     window.location.reload();
   }
   const activRg = () =>{
     dispatch(activeReg())
+    alert('registration is active');
     window.location.reload();
   }
   useEffect(() => {
@@ -62,7 +64,7 @@ function UserDashb() {
     dispatch(getActive())
   }, [])
   const showPdf = (pdf) => {
-    window.open(`http://localhost:8000/files/${pdf}`, "_blank", "noreferrer")
+    window.open(`https://backend-dep-ckwm.onrender.com/files/${pdf}`, "_blank", "noreferrer")
   }
 
   return (

@@ -13,7 +13,7 @@ function Download() {
   }, [])
   const showPdf = (pdf) => {
     console.log(pdf);
-    window.open(`http://localhost:8000/files/${pdf}`, "_blank", "noreferrer")
+    window.open(`https://backend-dep-ckwm.onrender.com/files/${pdf}`, "_blank", "noreferrer")
   }
   const handleDelete = (id) => {
     dispatch(deleteDownload(id))

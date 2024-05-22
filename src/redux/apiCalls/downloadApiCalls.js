@@ -7,7 +7,7 @@ export function getAllDownload() {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.get('http://localhost:8000/api/v1/download' )
+            const { data } = await axios.get('https://backend-dep-ckwm.onrender.com/api/v1/download' )
             dispatch(downloadActions.getAllDownload(data.result))
             console.log(data.result);
         } catch (error) {
@@ -19,7 +19,7 @@ export function createDownload(post) {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.post('http://localhost:8000/api/v1/download/create', post, {
+            const { data } = await axios.post('https://backend-dep-ckwm.onrender.com/api/v1/download/create', post, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -36,7 +36,7 @@ export function createDownload(post) {
 export function deleteDownload(id) {
     return async (dispatch, getState) => {
         try {
-            const { data } = await axios.delete(`http://localhost:8000/api/v1/download/${id}`)
+            const { data } = await axios.delete(`https://backend-dep-ckwm.onrender.com/api/v1/download/${id}`)
             dispatch(downloadActions.deletedDownload(data.message))
 
         } catch (error) {
@@ -48,7 +48,7 @@ export function updateCommittees(id,upd) {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.put(`http://localhost:8000/api/v1/committees/updateCommittees/${id}`,upd)
+            const { data } = await axios.put(`https://backend-dep-ckwm.onrender.com/api/v1/committees/updateCommittees/${id}`,upd)
             dispatch(committeesActions.updateCommittees(data))
 
         } catch (error) {
@@ -60,7 +60,7 @@ export function singleCommittee(id) {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.get(`http://localhost:8000/api/v1/committees/committees/${id}`)
+            const { data } = await axios.get(`https://backend-dep-ckwm.onrender.com/api/v1/committees/committees/${id}`)
             dispatch(committeesActions.singleCommittes(data))
 
         } catch (error) {

@@ -26,8 +26,9 @@ export function CreateCommittees() {
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(createCommittess({ name, role, univ, gender, categoryCmt }));
+
+        alert("create committees succusfly");
         window.location.reload(); 
-        
     }
 
     return (

@@ -7,7 +7,7 @@ export function createRegistrations(post) {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.post('http://localhost:8000/api/v1/registrations/createRegistration', post, {
+            const { data } = await axios.post('https://backend-dep-ckwm.onrender.com/api/v1/registrations/createRegistration', post, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -27,7 +27,7 @@ export function getActive() {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.get('http://localhost:8000/api/v1/active')
+            const { data } = await axios.get('https://backend-dep-ckwm.onrender.com/api/v1/active')
             dispatch(activeRegisterActions.getActives(data))
             console.log(data);
         } catch (error) {
@@ -40,7 +40,7 @@ export function activeReg() {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.put('http://localhost:8000/api/v1/active/active')
+            const { data } = await axios.put('https://backend-dep-ckwm.onrender.com/api/v1/active/active')
             dispatch(activeRegisterActions.active(data))
             console.log(data.message);
         } catch (error) {
@@ -53,7 +53,7 @@ export function desactiveReg() {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.put('http://localhost:8000/api/v1/active/desactive')
+            const { data } = await axios.put('https://backend-dep-ckwm.onrender.com/api/v1/active/desactive')
             dispatch(activeRegisterActions.desactive(data))
             console.log(data);
             alert(data.message)

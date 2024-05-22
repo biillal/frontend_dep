@@ -5,7 +5,7 @@ import { userAdminActions } from "../redux/userAdmin";
 export function login(user){
     return async (dispatch,getState) =>{
         try {
-             const {data} = await axios.post("http://localhost:8000/api/v1/userAdmin/login",user)
+             const {data} = await axios.post("https://backend-dep-ckwm.onrender.com/api/v1/userAdmin/login",user)
              dispatch(userAdminActions.login(data.user))
              console.log(data);
              localStorage.setItem('userAdmin',JSON.stringify(data));
@@ -17,7 +17,7 @@ export function login(user){
 export function getAllAdmin(){
     return async (dispatch,getState) =>{
         try {
-             const {data} = await axios.get("http://localhost:8000/api/v1/userAdmin/fetchAllAdmin")
+             const {data} = await axios.get("https://backend-dep-ckwm.onrender.com/api/v1/userAdmin/fetchAllAdmin")
              dispatch(userAdminActions.getAllAdmin(data.admins))
 
         } catch (error) {
@@ -38,7 +38,7 @@ export function logoutUser(){
 export function createAdmin(user){
     return async (dispatch,getState) =>{
         try {
-             const {data} = await axios.post("http://localhost:8000/api/v1/userAdmin/create-admin",user,{
+             const {data} = await axios.post("https://backend-dep-ckwm.onrender.com/api/v1/userAdmin/create-admin",user,{
                 headers:{
                     Authorization: "Bearer " + getState().admin.user.token,
                 }
@@ -55,7 +55,7 @@ export function createAdmin(user){
 export function deleteAdmin({id}) {
     return async (dispatch, getState) => {
         try {
-            const { data } = await axios.delete(`http://localhost:8000/api/v1/userAdmin/admin/${id}`)
+            const { data } = await axios.delete(`https://backend-dep-ckwm.onrender.com/api/v1/userAdmin/admin/${id}`)
             dispatch(userAdminActions.deleteAdmin(data))
         } catch (error) {
             console.log(error);

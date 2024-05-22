@@ -6,7 +6,7 @@ export function createRegistrations(post) {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.post('http://localhost:8000/api/v1/registrations/createRegistration', post, {
+            const { data } = await axios.post('https://backend-dep-ckwm.onrender.com/api/v1/registrations/createRegistration', post, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -26,7 +26,7 @@ export function fetchAllRegistration() {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.get('http://localhost:8000/api/v1/registrations/fetchAllRegistration')
+            const { data } = await axios.get('https://backend-dep-ckwm.onrender.com/api/v1/registrations/fetchAllRegistration')
             dispatch(registrationsActions.fetchAllRegistrations(data.result))
 
         } catch (error) {
@@ -41,7 +41,7 @@ export function deleteUser(id) {
     return async (dispatch, getState) => {
         try {
 
-            const { data } = await axios.delete(`http://localhost:8000/api/v1/registrations/delet-user/${id}`)
+            const { data } = await axios.delete(`https://backend-dep-ckwm.onrender.com/api/v1/registrations/delet-user/${id}`)
             dispatch(registrationsActions.deleteUser(data.result))
 
         } catch (error) {

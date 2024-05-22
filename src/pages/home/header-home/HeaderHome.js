@@ -30,8 +30,8 @@ function HeaderHome() {
           initial={{opacity:0 , scale:0.3}}
           whileInView={{opacity:1 , scale:1}}
           transition={{duration:0.9}}
-          className='lg:w-[50%] ml-7 lg:mt-0 mt-2 flex flex-col gap-2'>
-          <Text className='text-5xl font-bold text-black font-[Poppins] '>The first International Conference on Chemistry Science,
+          className='lg:w-[50%] ml-7 lg:mt-0 mt-2 flex  flex-col gap-2'>
+          <Text className='lg:text-5xl text-xl  font-bold text-black font-[Poppins] '>The first International Conference on Chemistry Science,
             Materials Design and their applications ICCSM’2024</Text>
           <Text className='text-2xl font-semibold text-white'>November 18-20, 2024 -Chlef-</Text>
         </motion.div>

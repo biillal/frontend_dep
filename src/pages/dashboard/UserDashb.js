@@ -46,6 +46,7 @@ function UserDashb() {
   const dispatch = useDispatch();
   const deleteHandler = (id) => {
     dispatch(deleteUser(id));
+    alert('deleted successfully')
     window.location.reload();
   }
   console.log(message);

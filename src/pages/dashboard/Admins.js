@@ -42,6 +42,7 @@ const Admins = () => {
     console.log(users);
     const deleteHandler = (id) => {
         dispatch(deleteAdmin({id}))
+        alert('admin deleted successfully ')
         window.location.reload();
     }
     return (

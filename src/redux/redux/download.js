@@ -5,7 +5,7 @@ const downloadSlice = createSlice({
     name:"categories",
     initialState:{
        downloads:[],
-        isLoading:false,
+        loading:false,
         message:"",
         update:"",
         status:false,
@@ -14,6 +14,12 @@ const downloadSlice = createSlice({
     reducers:{
         getAllDownload(state,action){
             state.downloads = action.payload
+        },
+        setLoding(state, action) {
+            state.loading = true
+        },
+        clearLoading(state, action) {
+            state.loading = false
         }, 
         createDownload(state,action){
             state.message = action.payload

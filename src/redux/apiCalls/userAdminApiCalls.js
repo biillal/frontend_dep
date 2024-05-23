@@ -5,9 +5,10 @@ import { userAdminActions } from "../redux/userAdmin";
 export function login(user){
     return async (dispatch,getState) =>{
         try {
+            dispatch(userAdminActions.setLoding())
              const {data} = await axios.post("https://backend-dep-ckwm.onrender.com/api/v1/userAdmin/login",user)
+             dispatch(userAdminActions.clearLoading())
              dispatch(userAdminActions.login(data.user))
-             console.log(data);
              localStorage.setItem('userAdmin',JSON.stringify(data));
         } catch (error) {
             console.log(error.response.data.message);
@@ -38,13 +39,15 @@ export function logoutUser(){
 export function createAdmin(user){
     return async (dispatch,getState) =>{
         try {
+            dispatch(userAdminActions.setLoding())
              const {data} = await axios.post("https://backend-dep-ckwm.onrender.com/api/v1/userAdmin/create-admin",user,{
                 headers:{
                     Authorization: "Bearer " + getState().admin.user.token,
                 }
             })
-            console.log(data);
+             dispatch(userAdminActions.clearLoading())
              dispatch(userAdminActions.createAdmin(data.message))
+             alert('admin added successfully')
         } catch (error) {
             alert(error.response.data.errors[0].msg);
         }

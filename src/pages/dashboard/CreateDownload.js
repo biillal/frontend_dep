@@ -10,7 +10,7 @@ const CreateDownload = () => {
   const [title,setTitle] = useState('')
   const [file,setFile] = useState(null)
   const dispatch =useDispatch()
-  const {message} = useSelector((state)=>state.download)
+  const {message , loading} = useSelector((state)=>state.download)
   const handleSubmit = (e) =>{
     e.preventDefault();
     if (!title) return alert("title is requried")
@@ -52,7 +52,12 @@ const CreateDownload = () => {
             </label>
           </div>
         </div>
-        <button className=''>Create</button>
+        <button className=''>
+           {
+            loading ? "loading"
+               : " Create"
+           }
+        </button>
       </form>
     </div>
   )

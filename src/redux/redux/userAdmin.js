@@ -10,12 +10,19 @@ const userAdminSlice = createSlice({
         users:[],
         delete:'',
         message:"",
+        loading: false,
         status:false,
         error:""
     },
     reducers:{
         createAdmin(state,action){
             state.message = action.payload
+        },
+        setLoding(state, action) {
+            state.loading = true
+        },
+        clearLoading(state, action) {
+            state.loading = false
         },
         login(state,action){
             state.user = action.payload

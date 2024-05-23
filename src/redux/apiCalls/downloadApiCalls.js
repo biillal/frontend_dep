@@ -18,14 +18,14 @@ export function getAllDownload() {
 export function createDownload(post) {
     return async (dispatch, getState) => {
         try {
-
+            dispatch(downloadActions.setLoding())
             const { data } = await axios.post('https://backend-dep-ckwm.onrender.com/api/v1/download/create', post, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             }
             )
-            console.log(data.registration);
+            dispatch(downloadActions.clearLoading())
             dispatch(downloadActions.createDownload(data.message))
             alert('Created successfully')
         } catch (error) {

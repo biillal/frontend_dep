@@ -57,11 +57,12 @@ export function CommitteesDashb() {
 
         const committee = { name, role, univ, gender, categoryCmt }
         dispatch(updateCommittees(id, committee));
-        alert('committees deleted successfully')
+        alert('committees updated successfully')
         window.location.reload();
     }
     const handleDelete = (id) => {
         dispatch(deleteCommittees(id))
+        alert('committees deleted successfully')
         window.location.reload();
     }
     useEffect(() => {

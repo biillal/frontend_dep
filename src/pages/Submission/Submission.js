@@ -29,6 +29,7 @@ export function Submission() {
         const formData = new FormData();
         formData.append("file", file);
         dispatch(createRegistrations({ nom, prenom, institution, institutionAddress, ville, phone, email, file, gender , topic }))
+        alert('Registration successfully')
         navigate('/')
     }
     useEffect(() => {

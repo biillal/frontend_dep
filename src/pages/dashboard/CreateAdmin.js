@@ -21,7 +21,7 @@ function CreateAdmin() {
       alert('Password confirmation incorrect')
     } else {
       dispatch(createAdmin({ name, lastname, email, password, passwordConfirm }))
-
+      alert('created admin successfully ')
       window.location.reload();
     }
 

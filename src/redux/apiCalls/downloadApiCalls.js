@@ -38,7 +38,7 @@ export function deleteDownload(id) {
         try {
             const { data } = await axios.delete(`https://backend-dep-ckwm.onrender.com/api/v1/download/${id}`)
             dispatch(downloadActions.deletedDownload(data.message))
-
+            
         } catch (error) {
             console.log(error);
         }

@@ -11,7 +11,8 @@ export function login(user){
              dispatch(userAdminActions.login(data.user))
              localStorage.setItem('userAdmin',JSON.stringify(data));
         } catch (error) {
-            console.log(error.response.data.message);
+            alert(error.response.data.message);
+            dispatch(userAdminActions.clearLoading())
         }
     } 
 }

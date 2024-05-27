@@ -17,7 +17,7 @@ function Contact() {
 
           <div className='flex flex-col items-center'>
             <span className='text-xl font-bold font-[Poppins] text-blue-600 '>Email</span>
-            <Text className='text-lg font-semibold font-[Poppins]'>icmse.lpcma.sba.2024@gmail.com</Text>
+            <Text className='text-lg font-semibold font-[Poppins]'>iccsm2024@gmail.com</Text>
           </div>
           <div className='flex flex-col items-center'>
             <span className='text-xl font-bold font-[Poppins] text-blue-600 '>Phone</span>

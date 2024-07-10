@@ -18,7 +18,7 @@ function DateIm() {
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <Text className='text-2xl font-bold text-blue-900 mt-3 font-[Poppins]'>Abstract submission</Text>
-                    <span className='text-xl mt-4 font-semibold font-[Poppins]'>30/06/2024</span>
+                    <span className='text-xl mt-4 font-semibold font-[Poppins]'>10/07/2024</span>
 
                 </motion.div>
                 <motion.div
@@ -28,7 +28,7 @@ function DateIm() {
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <Text className='text-2xl font-bold text-blue-900 mt-3 font-[Poppins]'>Abstract submission Deadline:</Text>
-                    <span className='text-xl mt-4 font-semibold font-[Poppins]'>10/10/2024</span>
+                    <span className='text-xl mt-4 font-semibold font-[Poppins]'>30/10/2024</span>
 
                 </motion.div>
                 <motion.div
@@ -38,7 +38,7 @@ function DateIm() {
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <Text className='text-2xl font-bold text-blue-900 mt-3 font-[Poppins]'>Notification of acceptance:</Text>
-                    <span className='text-xl mt-4 font-semibold font-[Poppins]'>30/10/2024</span>
+                    <span className='text-xl mt-4 font-semibold font-[Poppins]'>10/11/2024</span>
 
                 </motion.div>
 

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteDownload, getAllDownload } from '../../../redux/apiCalls/downloadApiCalls';
 function Download() {
   const { downloads, message } = useSelector((state) => state.download);
+  
   const { user } = useSelector((state) => state.admin);
   const dispatch = useDispatch()
   useEffect(() => {
@@ -13,7 +14,7 @@ function Download() {
   }, [])
   const showPdf = (pdf) => {
     console.log(pdf);
-    window.open(`https://backend-dep-ckwm.onrender.com/files/${pdf}`, "_blank", "noreferrer")
+    window.open(pdf, "_blank", "noreferrer")
   }
   const handleDelete = (id) => {
     dispatch(deleteDownload(id))
@@ -29,7 +30,7 @@ function Download() {
         </AbsoluteCenter>
       </Box>
       {
-        downloads.length !== null ? (
+        downloads.length > 0 ? (
           <div className=' grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5'>
             {
               downloads.map((download) => {
@@ -64,7 +65,7 @@ function Download() {
 
 
           </div>
-        ) : <div className=''>aa</div>
+        ) : <div className='flex justify-center items-center font-bold text-2xl text-gray-400'>No downloads</div>
       }
 
     </div>

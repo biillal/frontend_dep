@@ -65,7 +65,7 @@ function UserDashb() {
     dispatch(getActive())
   }, [])
   const showPdf = (pdf) => {
-    window.open(`https://backend-dep-ckwm.onrender.com/files/${pdf}`, "_blank", "noreferrer")
+    window.open(pdf, "_blank", "noreferrer")
   }
 
   return (

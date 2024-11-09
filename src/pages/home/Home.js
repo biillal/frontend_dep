@@ -6,6 +6,7 @@ import ConfirenceHome from './confirence-home/ConfirenceHome'
 import DateIm from './importent-date/DateIm'
 import loading1 from '../../assets/loading1.mp4'
 import { helix } from 'ldrs';
+import Speakers from './Speakers/Speakers'
 function Home() {
   const [loading, setLoading] = useState(false)
   useEffect(() => {
@@ -23,7 +24,7 @@ function Home() {
           <HeaderHome />
           <ConfirenceHome />
           <Download />
-          <DateIm />
+          <Speakers/>
         </MainLayout>
       ))
           :
